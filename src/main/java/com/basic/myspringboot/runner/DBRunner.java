@@ -20,5 +20,8 @@ public class DBRunner implements ApplicationRunner {
         //ctrl + alt + v : return type 자동생성
         Connection connection = dataSource.getConnection();
         DatabaseMetaData metaData = connection.getMetaData();
+        System.out.println("DB URL => " + metaData.getURL());
+        System.out.println("DB Vendor => " + metaData.getDatabaseProductName());
+        System.out.println("DB username => " + metaData.getUserName());
     }
 }
