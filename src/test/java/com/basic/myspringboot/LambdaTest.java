@@ -3,10 +3,23 @@ package com.basic.myspringboot;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class LambdaTest {
+    @Test
+    public void iterable() {
+        List<User> users = Arrays.asList(new User("길동", 10), new User("철수", 9), new User("영희", 8));
+        for (User user: users) {
+            System.out.println("user = " + user);
+        }
+
+    }
+
     @Test @Disabled
     public void runnable() throws Exception {
         //1. MyRunnable 클래스 사용
@@ -31,6 +44,7 @@ public class LambdaTest {
 @Getter
 @Setter
 @AllArgsConstructor
+@ToString
 class User {
     private String name;
     private int age;
