@@ -2,11 +2,12 @@ package com.basic.myspringboot.controller;
 
 import com.basic.myspringboot.entity.User;
 import com.basic.myspringboot.service.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/api/users")
 public class UserRestController {
     private UserService userService;
 
@@ -15,11 +16,19 @@ public class UserRestController {
         this.userService = userService;
     }
 
-    //http://localhost:8087/users
-    @PostMapping("/users")
+    //POST http://localhost:8087/api/users
+    @PostMapping
     public User addUser(@RequestBody User user) {
         return userService.insertUser(user);
     }
+
+    //GET http://localhost:8087/api/users
+    @GetMapping
+    public List<User> getUsers(){
+        return userService.selectAllUser();
+    }
+
+
 
 
 }
