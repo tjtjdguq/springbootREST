@@ -40,5 +40,9 @@ public class UserRestController {
         return existUser;
     }
 
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable Long id, @RequestBody User userDetail){
+        return userService.updateUser(id, userDetail);
+    }
 
 }
