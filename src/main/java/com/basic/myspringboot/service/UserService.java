@@ -1,6 +1,7 @@
 package com.basic.myspringboot.service;
 
 import com.basic.myspringboot.entity.User;
+import com.basic.myspringboot.exception.ResourceNotFoundException;
 import com.basic.myspringboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,4 +30,12 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    public User updateUser(Long id, User userDetail) {
+        User existUser = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User","id",id));
+        //name 필드 수정을 하기 위해서 setter method만 호출한다.
+        existUser.setName(userDetail.getName());
+        //email 필드 수정 하기 위해서 setter method만 호출한다.
+        existUser.setEmail(userDetail.getEmail());
+        return existUser;
+    }
 }
