@@ -23,7 +23,7 @@ http {
                       '"$http_user_agent" "$http_x_forwarded_for"';
         
     upstream backend {
-    server mywas:8000;
+    server mywas:8080;
     }
 
     access_log  /var/log/nginx/access.log  main;
@@ -92,8 +92,7 @@ docker run --name mysql-svc -d --net msanet --net-alias=mysql-svc \
 -e MYSQL_ROOT_HOST='%' \
 mariadb:10.3
 
-
-docker run --name mywas -d -p 8080:8080 --net msanet --net-alias=mywas vega2k/springbootreactjs:latest
+docker run --name mywas -d -p 8080:8080 --net msanet --net-alias=mywas vega2k/springbootreactjs:boot
 
 docker run --name myweb -d -p 80:80 -v /work/test3/nginx/conf:/etc/nginx/ -v /work/test3/nginx/log:/var/log/nginx --net msanet nginx
 
